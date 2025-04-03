@@ -14,3 +14,5 @@ C:\Users\Admin\Documents\.git\TicTacToe\obj\Debug\net8.0-windows\refint\TicTacTo
 C:\Users\Admin\Documents\.git\TicTacToe\obj\Debug\net8.0-windows\TicTacToe.pdb
 C:\Users\Admin\Documents\.git\TicTacToe\obj\Debug\net8.0-windows\TicTacToe.genruntimeconfig.cache
 C:\Users\Admin\Documents\.git\TicTacToe\obj\Debug\net8.0-windows\ref\TicTacToe.dll
+C:\Users\Admin\Documents\.git\TicTacToe\obj\Debug\net8.0-windows\TicTacToe.WinScreen.resources
+C:\Users\Admin\Documents\.git\TicTacToe\obj\Debug\net8.0-windows\TicTacToe.sourcelink.json

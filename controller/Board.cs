@@ -19,6 +19,7 @@ namespace TicTacToe.controller
             playBoard.Show();
             SetMarkingComputer();
             button.Text = "X";
+            button.Enabled = false;
             playerMarkings.Add((int)button.Name[^1] - '0');
         }
 
@@ -36,9 +37,10 @@ namespace TicTacToe.controller
             if (randomButton == null) return;
 
             computerMarkings.Add(randomInt);
-            MessageBox.Show($"Willekeurig getal: {randomInt} {string.Join(",", playerMarkings)}");
+            //MessageBox.Show($"Willekeurig getal: {randomInt} {string.Join(",", playerMarkings)}");
 
             randomButton.Text = "O";
+            randomButton.Enabled = false;
         }
     }
 }
