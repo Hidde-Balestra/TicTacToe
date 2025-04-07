@@ -1,46 +1,134 @@
-﻿using System.Collections.Generic;
-using System.Windows.Forms;
-
-namespace TicTacToe.controller
+﻿namespace TicTacToe.controller
 {
     public class Board
     {
         private Form1 playBoard;
-        private List<int> playerMarkings = new();
-        private List<int> computerMarkings = new();
+        private List<int> playerMarkings = new List<int>();
+        private List<int> computerMarkings = new List<int>();
+        // Define winning combinations (1-9 positions in 3x3 grid)
+        private readonly int[,] winningCombinations = new int[,]
+        {
+            {1, 2, 3}, {4, 5, 6}, {7, 8, 9}, // Rows
+            {1, 4, 7}, {2, 5, 8}, {3, 6, 9}, // Columns
+            {1, 5, 9}, {3, 5, 7}            // Diagonals
+        };
 
         public Board(Form1 form)
         {
             playBoard = form;
         }
 
-        public void SetMarkingPlayer(Button button)
+        public bool SetMarkingPlayer(Button button)
         {
             playBoard.Show();
-            SetMarkingComputer();
             button.Text = "X";
             button.Enabled = false;
-            playerMarkings.Add((int)button.Name[^1] - '0');
+            int position = (int)button.Name[^1] - '0';
+            playerMarkings.Add(position);
+
+            // Check if player won
+            if (CheckWin(playerMarkings))
+            {
+                ShowWinScreen("Player wins!");
+                return true;
+            }
+
+            // Check if it's a draw
+            if (IsDraw())
+            {
+                ShowWinScreen("It's a draw!");
+                return true;
+            }
+
+            SetMarkingComputer();
+            return false;
         }
 
-        public void SetMarkingComputer()
+        public bool SetMarkingComputer()
         {
             Random random = new Random();
             int randomInt = random.Next(1, 10);
 
-            while (playerMarkings.Contains(randomInt) || computerMarkings.Contains(randomInt)) {
+            while (playerMarkings.Contains(randomInt) || computerMarkings.Contains(randomInt))
+            {
                 randomInt = random.Next(1, 10);
             }
 
             Button? randomButton = playBoard.Controls["TicTacToeButton" + randomInt] as Button;
 
-            if (randomButton == null) return;
+            if (randomButton == null) return false;
 
             computerMarkings.Add(randomInt);
-            //MessageBox.Show($"Willekeurig getal: {randomInt} {string.Join(",", playerMarkings)}");
-
             randomButton.Text = "O";
             randomButton.Enabled = false;
+
+            // Check if computer won
+            if (CheckWin(computerMarkings))
+            {
+                ShowWinScreen("Computer wins!");
+                return true;
+            }
+
+            // Check if it's a draw
+            if (IsDraw())
+            {
+                ShowWinScreen("It's a draw!");
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool CheckWin(List<int> markings)
+        {
+            // Check each winning combination
+            for (int i = 0; i < winningCombinations.GetLength(0); i++)
+            {
+                bool hasWon = true;
+                for (int j = 0; j < 3; j++)
+                {
+                    if (!markings.Contains(winningCombinations[i, j]))
+                    {
+                        hasWon = false;
+                        break;
+                    }
+                }
+                if (hasWon) return true;
+            }
+            return false;
+        }
+
+        private bool IsDraw()
+        {
+            // If total markings is 9 and no one has won, it's a draw
+            return (playerMarkings.Count + computerMarkings.Count) == 9;
+        }
+
+        private void ShowWinScreen(string result)
+        {
+            playBoard.Hide();
+
+            using (WinScreen winScreen = new WinScreen(result))
+            {
+                winScreen.ShowDialog();
+            }
+
+            ResetGame();
+            playBoard.Show();
+        }
+
+        public void ResetGame()
+        {
+            playerMarkings.Clear();
+            computerMarkings.Clear();
+            foreach (Control control in playBoard.Controls)
+            {
+                if (control is Button button && button.Name.StartsWith("TicTacToeButton"))
+                {
+                    button.Text = "";
+                    button.Enabled = true;
+                }
+            }
         }
     }
 }

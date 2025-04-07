@@ -1,11 +1,10 @@
-using System;
 using TicTacToe.controller;
 
 namespace TicTacToe
 {
     public partial class Form1 : Form
     {
-        private Board Board;
+        private readonly Board Board;
         public Form1()
         {
             InitializeComponent();

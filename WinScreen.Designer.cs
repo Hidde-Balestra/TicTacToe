@@ -2,15 +2,10 @@
 {
     partial class WinScreen
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
+        private Label ResultLabel;
+        private Button PlayAgainButton;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,41 +15,43 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 50F);
-            label1.Location = new Point(29, 40);
-            label1.Name = "label1";
-            label1.Size = new Size(231, 89);
-            label1.TabIndex = 0;
-            label1.Text = "... wins";
-            // 
+            this.ResultLabel = new Label();
+            this.PlayAgainButton = new Button();
+            this.SuspendLayout();
+
+            // ResultLabel
+            this.ResultLabel.AutoSize = true;
+            this.ResultLabel.Location = new System.Drawing.Point(50, 30);
+            this.ResultLabel.Name = "ResultLabel";
+            this.ResultLabel.Size = new System.Drawing.Size(35, 13);
+            this.ResultLabel.TabIndex = 0;
+            this.ResultLabel.Text = "Result";
+
+            // PlayAgainButton
+            this.PlayAgainButton.Location = new System.Drawing.Point(50, 60);
+            this.PlayAgainButton.Name = "PlayAgainButton";
+            this.PlayAgainButton.Size = new System.Drawing.Size(75, 23);
+            this.PlayAgainButton.TabIndex = 1;
+            this.PlayAgainButton.Text = "Play Again";
+            this.PlayAgainButton.UseVisualStyleBackColor = true;
+            this.PlayAgainButton.Click += new System.EventHandler(this.PlayAgainButton_Click);
+
             // WinScreen
-            // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(label1);
-            Name = "WinScreen";
-            Text = "WinScreen";
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(200, 100);
+            this.Controls.Add(this.PlayAgainButton);
+            this.Controls.Add(this.ResultLabel);
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "WinScreen";
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Text = "Game Over";
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
-
-        #endregion
-
-        private Label label1;
     }
 }
