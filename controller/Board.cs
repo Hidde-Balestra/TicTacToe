@@ -2,9 +2,10 @@
 {
     public class Board
     {
-        private TicTacToe.BoardScreen playBoard;
+        private BoardScreen playBoard;
         private List<int> playerMarkings = new List<int>();
         private List<int> computerMarkings = new List<int>();
+
         // Define winning combinations (1-9 positions in 3x3 grid)
         private readonly int[,] winningCombinations = new int[,]
         {
@@ -13,7 +14,7 @@
             {1, 5, 9}, {3, 5, 7}            // Diagonals
         };
 
-        public Board(TicTacToe.BoardScreen form)
+        public Board(BoardScreen form)
         {
             playBoard = form;
         }
