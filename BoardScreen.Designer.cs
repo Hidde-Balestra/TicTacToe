@@ -1,6 +1,6 @@
 ﻿namespace TicTacToe
 {
-    partial class Form1
+    partial class BoardScreen
     {
         /// <summary>
         ///  Required designer variable.
@@ -120,7 +120,7 @@
             TicTacToeButton9.UseVisualStyleBackColor = true;
             TicTacToeButton9.Click += TicTacToeButtonClick;
             // 
-            // Form1
+            // BoardScreen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -134,8 +134,8 @@
             Controls.Add(TicTacToeButton3);
             Controls.Add(TicTacToeButton2);
             Controls.Add(TicTacToeButton1);
-            Name = "Form1";
-            Text = "Form1";
+            Name = "BoardScreen";
+            Text = "Tic Tac Toe";
             ResumeLayout(false);
         }
 

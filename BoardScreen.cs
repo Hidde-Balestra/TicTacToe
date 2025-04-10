@@ -2,10 +2,10 @@ using TicTacToe.controller;
 
 namespace TicTacToe
 {
-    public partial class Form1 : Form
+    public partial class BoardScreen : Form
     {
         private readonly Board Board;
-        public Form1()
+        public BoardScreen()
         {
             InitializeComponent();
             board = new Board(this);

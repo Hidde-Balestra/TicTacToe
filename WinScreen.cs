@@ -1,7 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
-
-namespace TicTacToe
+﻿namespace TicTacToe
 {
     public partial class WinScreen : Form
     {
