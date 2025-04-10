@@ -137,9 +137,11 @@
                 }
             }
 
+            //center
             if (!playerMarkings.Contains(5) && !computerMarkings.Contains(5))
                 return 5;
 
+            //corner
             int[] corners = { 1, 3, 7, 9 };
             foreach (int corner in corners)
             {
@@ -147,6 +149,7 @@
                     return corner;
             }
 
+            //Take any spot
             for (int i = 1; i <= 9; i++)
             {
                 if (!playerMarkings.Contains(i) && !computerMarkings.Contains(i))
