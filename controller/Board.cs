@@ -46,19 +46,13 @@
 
         public bool SetMarkingComputer()
         {
-            Random random = new Random();
-            int randomInt = random.Next(1, 10);
+            int bestMove = FindBestMove();
 
-            while (playerMarkings.Contains(randomInt) || computerMarkings.Contains(randomInt))
-            {
-                randomInt = random.Next(1, 10);
-            }
-
-            Button? randomButton = playBoard.Controls["TicTacToeButton" + randomInt] as Button;
+            Button? randomButton = playBoard.Controls["TicTacToeButton" + bestMove] as Button;
 
             if (randomButton == null) return false;
 
-            computerMarkings.Add(randomInt);
+            computerMarkings.Add(bestMove);
             randomButton.Text = "O";
             randomButton.Enabled = false;
 
@@ -129,6 +123,37 @@
                     button.Enabled = true;
                 }
             }
+        }
+
+        private int FindBestMove()
+        {
+            for (int i = 1; i <= 9; i++)
+            {
+                if (!playerMarkings.Contains(i) && !computerMarkings.Contains(i))
+                {
+                    List<int> tempMarkings = new List<int>(computerMarkings) { i };
+                    if (CheckWin(tempMarkings))
+                        return i;
+                }
+            }
+
+            if (!playerMarkings.Contains(5) && !computerMarkings.Contains(5))
+                return 5;
+
+            int[] corners = { 1, 3, 7, 9 };
+            foreach (int corner in corners)
+            {
+                if (!playerMarkings.Contains(corner) && !computerMarkings.Contains(corner))
+                    return corner;
+            }
+
+            for (int i = 1; i <= 9; i++)
+            {
+                if (!playerMarkings.Contains(i) && !computerMarkings.Contains(i))
+                    return i;
+            }
+
+            return -1;
         }
     }
 }
