@@ -140,14 +140,14 @@
         }
 
         #endregion
-        public Button TicTacToeButton2;
-        public Button TicTacToeButton3;
-        public Button TicTacToeButton4;
-        public Button TicTacToeButton5;
-        public Button TicTacToeButton6;
-        public Button TicTacToeButton7;
-        public Button TicTacToeButton8;
-        public Button TicTacToeButton9;
-        public Button TicTacToeButton1;
+        private Button TicTacToeButton2;
+        private Button TicTacToeButton3;
+        private Button TicTacToeButton4;
+        private Button TicTacToeButton5;
+        private Button TicTacToeButton6;
+        private Button TicTacToeButton7;
+        private Button TicTacToeButton8;
+        private Button TicTacToeButton9;
+        private Button TicTacToeButton1;
     }
 }

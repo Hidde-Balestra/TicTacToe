@@ -3,8 +3,8 @@
     public class Board
     {
         private BoardScreen playBoard;
-        private List<int> playerMarkings = new List<int>();
-        private List<int> computerMarkings = new List<int>();
+        private List<int> playerMarkings = [];
+        private List<int> computerMarkings = [];
 
         // Define winning combinations (1-9 positions in 3x3 grid)
         private readonly int[,] winningCombinations = new int[,]
@@ -49,9 +49,8 @@
         {
             int bestMove = FindBestMove();
 
-            Button? randomButton = playBoard.Controls["TicTacToeButton" + bestMove] as Button;
 
-            if (randomButton == null) return false;
+            if (playBoard.Controls["TicTacToeButton" + bestMove] is not Button randomButton) return false;
 
             computerMarkings.Add(bestMove);
             randomButton.Text = "O";
@@ -103,7 +102,7 @@
         {
             playBoard.Hide();
 
-            using (WinScreen winScreen = new WinScreen(result))
+            using (WinScreen winScreen = new(result))
             {
                 winScreen.ShowDialog();
             }
@@ -132,7 +131,7 @@
             {
                 if (!playerMarkings.Contains(i) && !computerMarkings.Contains(i))
                 {
-                    List<int> tempMarkings = new List<int>(computerMarkings) { i };
+                    List<int> tempMarkings = [.. computerMarkings, i];
                     if (CheckWin(tempMarkings))
                         return i;
                 }
@@ -143,7 +142,7 @@
                 return 5;
 
             //corner
-            int[] corners = { 1, 3, 7, 9 };
+            int[] corners = [1, 3, 7, 9];
             foreach (int corner in corners)
             {
                 if (!playerMarkings.Contains(corner) && !computerMarkings.Contains(corner))

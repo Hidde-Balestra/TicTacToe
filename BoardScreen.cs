@@ -4,14 +4,13 @@ namespace TicTacToe
 {
     public partial class BoardScreen : Form
     {
-        private readonly Board Board;
         public BoardScreen()
         {
             InitializeComponent();
             board = new Board(this);
         }
 
-        public Board board { get; private set; }
+        public Board board { get; }
 
         public void TicTacToeButtonClick(object sender, EventArgs e)
         {
